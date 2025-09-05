@@ -1,10 +1,16 @@
+using LearnApp.Web.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 
-
+builder.Services.AddDbContext<LearnAppContext>(options =>
+              options.UseSqlServer(configuration.GetConnectionString("LearnAppConnectionStrings")));
 
 
 
